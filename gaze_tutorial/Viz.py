@@ -138,9 +138,9 @@ def plotSimplex(points, fig=None,
     fig.gca().xaxis.set_major_locator(MT.NullLocator())
     fig.gca().yaxis.set_major_locator(MT.NullLocator())
     # Draw vertex labels
-    # fig.gca().text(-.25, -0.05, vertexlabels[0], size=30)
-    # fig.gca().text(1.05, -0.05, vertexlabels[1], size=30)
-    # fig.gca().text(0.5-0.1, np.sqrt(3) / 2 + 0.05, vertexlabels[2], size=30)
+    fig.gca().text(-.25, -0.05, vertexlabels[0], size=30)
+    fig.gca().text(1.05, -0.05, vertexlabels[1], size=30)
+    fig.gca().text(0.5-0.1, np.sqrt(3) / 2 + 0.05, vertexlabels[2], size=30)
     # Project and draw the actual points
     projected = projectSimplex(points)
     plt.scatter(projected[:,0], projected[:,1], **kwargs)
