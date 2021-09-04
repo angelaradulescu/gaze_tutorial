@@ -1,7 +1,6 @@
 #! /usr/bin/env python
 #
 # Copyright (c) 2021 Angela Radulescu
-# https://www.angelaradulescu.com
 
 import os, sys
 from setuptools import setup, find_packages
@@ -12,6 +11,7 @@ DISTNAME = 'gaze_tutorial'
 MAINTAINER = 'Angela Radulescu'
 MAINTAINER_EMAIL = 'angela.radulescu@gmail.com'
 DESCRIPTION = 'Computational modeling of gaze tutorial.'
+URL = 'http://www.angelaradulescu.com'
 LICENSE = 'MIT'
 DOWNLOAD_URL = 'http://github.com/angelaradulescu/gaze_tutorial'
 
