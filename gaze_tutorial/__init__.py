@@ -2,6 +2,6 @@
 
 __version__ = '0.1'
 
-from .Viz import (*)
+from .Viz import *
 from .World import (World)
 
