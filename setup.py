@@ -1,4 +1,4 @@
-! /usr/bin/env python
+#! /usr/bin/env python
 #
 # Copyright (c) 2021 Angela Radulescu
 # https://www.angelaradulescu.com
