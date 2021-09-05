@@ -32,7 +32,7 @@ def plot_attention_pdf(world, data, sim):
     # colors = ['#1f78b4', '#33a02c', '#ff7f00']
     colors = ['#0571b0', '#ca0020', '#404040']
 
-    fig, ax = plt.subplots(1, 1, figsize=(15,3));
+    fig, ax = plt.subplots(1, 1, figsize=(20,4));
     # fig, ax = plt.subplots(1, 1, figsize=(1,6));
     ax.set_xlim((0, n_trials+1));
     ax.set_xticks(np.arange(n_trials)+1);
@@ -79,7 +79,7 @@ def plot_attention_simplex(world, data):
     norm = C.Normalize(vmin=0, vmax=len(data))
     c = range(len(data))
     # Do scatter plot
-    fig = plotSimplex(data, s=400, c=c, cmap=cmap, norm=norm, linewidth=2)
+    fig = plotSimplex(data, s=300, c=c, cmap=cmap, norm=norm, linewidth=2)
 
     return fig
 
