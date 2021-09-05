@@ -32,7 +32,7 @@ def plot_attention_pdf(world, data, sim):
     # colors = ['#1f78b4', '#33a02c', '#ff7f00']
     colors = ['#0571b0', '#ca0020', '#404040']
 
-    fig, ax = plt.subplots(1, 1, figsize=(20,4));
+    fig, ax = plt.subplots(1, 1, figsize=(30,6));
     # fig, ax = plt.subplots(1, 1, figsize=(1,6));
     ax.set_xlim((0, n_trials+1));
     ax.set_xticks(np.arange(n_trials)+1);
@@ -129,7 +129,7 @@ def plotSimplex(points, fig=None,
     Returns Figure, caller must .show()
     """
     if(fig == None):        
-        fig = plt.figure(figsize=(6,6))
+        fig = plt.figure(figsize=(8,8))
     # Draw the triangle
     l1 = L.Line2D([0, 0.5, 1.0, 0], # xcoords
                   [0, np.sqrt(3) / 2, 0, 0], # ycoords
