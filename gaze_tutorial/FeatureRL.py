@@ -17,7 +17,6 @@ import warnings
 import sys
 import os
 sys.path.append(os.getcwd()) 
-from World import World
 from Data import extract_vars
 
 # Start Agent class.
@@ -448,13 +447,10 @@ class Agent(object):
 ## Training functions.
 ######################
 
-def train_frl_choice(training_params, behav_training_data, et_training_data):
+def train_frl_choice(world, training_params, behav_training_data, et_training_data):
     
     """ Trains model on choice data. 
     """
-
-    ## Set world properties. 
-    world = World(3, 3, 0, 0.75, 0.25, 1)
 
     ## Initialize likelihood.
     Lik = 0
@@ -496,13 +492,10 @@ def train_frl_choice(training_params, behav_training_data, et_training_data):
     
     return -Lik
 
-def train_frl_attention_no_center_bias(training_params, behav_training_data, et_training_data):
+def train_frl_attention_no_center_bias(world, training_params, behav_training_data, et_training_data):
     
     """ Trains model on gaze data with no center bias parameter. 
     """
-
-    ## Set world properties. 
-    world = World(3, 3, 0, 0.75, 0.25, 1)
 
     ## Initialize likelihood.
     Lik = 0
@@ -544,13 +537,10 @@ def train_frl_attention_no_center_bias(training_params, behav_training_data, et_
     
     return -Lik
 
-def train_frl_attention_center_bias(training_params, behav_training_data, et_training_data):
+def train_frl_attention_center_bias(world, training_params, behav_training_data, et_training_data):
     
     """ Trains model on gaze data with center bias parameter. 
     """
-
-    ## Set world properties. 
-    world = World(3, 3, 0, 0.75, 0.25, 1)
 
     ## Initialize likelihood.
     Lik = 0
