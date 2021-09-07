@@ -17,7 +17,6 @@ import warnings
 import sys
 import os
 sys.path.append(os.getcwd()) 
-from Data import extract_vars
 
 # Start Agent class.
 class Agent(object):
