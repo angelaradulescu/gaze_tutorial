@@ -4,7 +4,8 @@ __version__ = '0.1'
 
 from .Viz import *
 from .SimplexPlots import *
-from .FeatureRL import *
 from .World import (World)
+from .Data import *
+from .FeatureRL import *
 
 
