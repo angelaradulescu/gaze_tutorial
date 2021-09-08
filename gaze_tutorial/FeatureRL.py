@@ -484,8 +484,8 @@ def extract_vars(behav_data, et_data, trials):
     actions[np.vstack((chose_1, chose_2, chose_3)).T.nonzero()[0]] = np.vstack((chose_1, chose_2, chose_3)).T.nonzero()[1] + 1
 
     ## Remove missed trials, or trials in which we did not have gaze data.
-    if np.sum(np.isnan(et_game_data[1].values)): 
-        nan_idx_gaze = np.squeeze(np.argwhere(et_game_data.isnull()[1].values),axis=1)
+    if np.sum(np.isnan(et_game_data['1'].values)): 
+        nan_idx_gaze = np.squeeze(np.argwhere(et_game_data.isnull()['1'].values),axis=1)
     else: 
         nan_idx_gaze = []
 
