@@ -12,7 +12,6 @@ import numpy as np
 from scipy.special import logsumexp
 from scipy.stats import dirichlet
 import warnings
-import extract_vars
 
 # Custom dependencies
 import sys
