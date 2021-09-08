@@ -617,7 +617,7 @@ def train_frl_attention_no_center_bias(training_params, world, behav_training_da
     
     return -Lik
 
-def train_frl_attention_center_bias(training_params, world, behav_training_data, et_training_data):
+def train_frl_attention_center_bias(training_params, world, behav_training_data, et_training_data, print_output=False):
     
     """ Trains model on gaze data with center bias parameter. 
     """
@@ -658,6 +658,7 @@ def train_frl_attention_center_bias(training_params, world, behav_training_data,
         
         Lik = Lik + lik
     
-    print("total training set log likelihood:", Lik)
+    if print_output == True
+        print("total training set log likelihood:", Lik)
     
     return -Lik
