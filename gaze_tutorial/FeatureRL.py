@@ -446,7 +446,7 @@ class Agent(object):
 ## Training functions.
 ######################
 
-def train_frl_choice(world, training_params, behav_training_data, et_training_data):
+def train_frl_choice(training_params, world, behav_training_data, et_training_data):
     
     """ Trains model on choice data. 
     """
@@ -491,7 +491,7 @@ def train_frl_choice(world, training_params, behav_training_data, et_training_da
     
     return -Lik
 
-def train_frl_attention_no_center_bias(world, training_params, behav_training_data, et_training_data):
+def train_frl_attention_no_center_bias(training_params, world, behav_training_data, et_training_data):
     
     """ Trains model on gaze data with no center bias parameter. 
     """
@@ -536,7 +536,7 @@ def train_frl_attention_no_center_bias(world, training_params, behav_training_da
     
     return -Lik
 
-def train_frl_attention_center_bias(world, training_params, behav_training_data, et_training_data):
+def train_frl_attention_center_bias(training_params, world, behav_training_data, et_training_data):
     
     """ Trains model on gaze data with center bias parameter. 
     """
