@@ -6,6 +6,7 @@ from .Viz import *
 from .SimplexPlots import *
 from .World import (World)
 from .Data import *
+import Data
 from .FeatureRL import *
 
 
