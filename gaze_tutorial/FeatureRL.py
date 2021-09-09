@@ -363,7 +363,7 @@ class Agent(object):
             trial_alphas = np.exp(a - logsumexp(a));
             trial_alphas =  trial_alphas*self.precision
             trial_alphas = trial_alphas + 0.001
-            
+
             # Raise exception if Dirichlet parameters are invalid.
             if np.min(trial_alphas) <= 0:
                 print(self.eta)
@@ -567,7 +567,7 @@ def train_frl_attention_no_center_bias(training_params, world, behav_training_da
         extracted_data = extract_vars(behav_training_data, et_training_data, trials)
         
         ## Run model to obtain likelihood.
-        W, lik = frl.attention_likelihood(world, extracted_data)
+        lik = frl.attention_likelihood(world, extracted_data)
         
         Lik = Lik + lik
     
