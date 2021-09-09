@@ -291,7 +291,7 @@ class Agent(object):
 
         return w_all, log_lik
 
-    def attention_likelihood(self, world, extracted_data, feature_level=True):
+    def attention_likelihood(self, world, extracted_data):
 
         """ Returns the log likelihood of a sequence of attention measurements. 
             
@@ -325,9 +325,6 @@ class Agent(object):
             Returns
             -------
 
-            w_all: float, array(n_trials, n_feats)
-                Learned feature weights.
-
             log_lik: float
                 Log-likelihood of attention measurements.
         """
@@ -341,9 +338,6 @@ class Agent(object):
         ## Get number of trials
         n_trials = len(outcomes)
 
-        ## Preallocate value array.
-        w_all = np.ones((n_trials, world.n_feats)) * np.nan
-        
         ## Initialize feature weights.
         W = self.w_init * np.ones(world.n_feats)
 
@@ -352,60 +346,24 @@ class Agent(object):
 
         ## Loop through trials. 
         for t in np.arange(n_trials):
-
-            ## Store current W.
-            w_all[t,:] = W
-            
+     
             ## Grab observed attention.
-            if feature_level == True:
-                trial_data = et_data[t,:]
-            else:
-                # This needs to be generalized.
-                trial_data = np.zeros(world.n_dims)
-                trial_data[0] = np.sum(et_data[t,0:3])
-                trial_data[1] = np.sum(et_data[t,3:6])
-                trial_data[2] = np.sum(et_data[t,6:9])
-
+            trial_data = et_data[t,:]
             # Add small constant and re-normalize (avoids 0s)
             trial_data = trial_data + 0.001
             trial_data = trial_data / sum(trial_data)
+
             # Raise exception if data input is invalid.
             if np.min(trial_data) <= 0:
                 print(trial_data)
                 raise Exception('Dirichlet data should be greater than 0.')
                 
-            ## Map to Dirichlet alphas. 
-            ## FEATURE LEVEL. 
-            if feature_level == True:
-
-                ## Set center bias component of alphas.
-                # This needs to be generalized...
-                center_bias = np.zeros(9)
-                if center[t,0] == 1: center_bias[0:3] = self.beta_center_dim 
-                if center[t,0] == 2: center_bias[3:6] = self.beta_center_dim
-                if center[t,0] == 3: center_bias[6:9] = self.beta_center_dim
-                center_bias[center[t,1]-1] = self.beta_center_feat
-
-                a = self.beta_value_gaze * W + center_bias;
-                
-            ## DIMENSION LEVEL. 
-            else:
-                ## Set center bias component of alphas.
-                center_bias = np.zeros(world.n_dims)
-                center_bias[center[t,0]-1] = self.beta_center_dim
-
-                # This needs to be generalized...
-                a = np.zeros(world.n_feats_per_dim)
-                a[0] = np.max(W[0:3])
-                a[1] = np.max(W[3:6])
-                a[2] = np.max(W[6:9])
-
-                a = self.beta_value_gaze * a + center_bias;
-
+            ## Pass values through softmax to get alphas.
+            a = self.beta_value_gaze * W ;
             trial_alphas = np.exp(a - logsumexp(a));
             trial_alphas =  trial_alphas*self.precision
             trial_alphas = trial_alphas + 0.001
-
+            
             # Raise exception if Dirichlet parameters are invalid.
             if np.min(trial_alphas) <= 0:
                 print(self.eta)
@@ -438,7 +396,7 @@ class Agent(object):
             unchosen_feats = all_feats[~np.isin(all_feats, choice)]
             W[unchosen_feats-1] = (1-self.eta_k) * W[unchosen_feats-1]
 
-        return w_all, log_lik
+        return log_lik
 
 # End Agent class.
 
@@ -609,7 +567,7 @@ def train_frl_attention_no_center_bias(training_params, world, behav_training_da
         extracted_data = extract_vars(behav_training_data, et_training_data, trials)
         
         ## Run model to obtain likelihood.
-        W, lik = frl.attention_likelihood(world, extracted_data, feature_level=True)
+        W, lik = frl.attention_likelihood(world, extracted_data)
         
         Lik = Lik + lik
     
