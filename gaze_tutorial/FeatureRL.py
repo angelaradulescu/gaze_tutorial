@@ -572,6 +572,6 @@ def train_frl_attention_no_center_bias(training_params, world, behav_training_da
         Lik = Lik + lik
     
     if (print_output == True):
-        print("total training set log likelihood:", Lik)
+        print("total training set log-likelihood:", Lik)
     
     return -Lik
